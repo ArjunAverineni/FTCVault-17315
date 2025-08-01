@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Vault</title>
+    <style>
+        :root {
+            --navy: #131925;
+            --orange: #ff6f00;
+            --white: #f8f9fa;
+            --gray: #232b3a;
+            --dark-gray: #bfc9d1;
+            --shadow: 0 8px 32px rgba(20,33,61,0.32);
+        }
+        html, body {
+            background: linear-gradient(135deg, var(--navy) 60%, var(--gray) 100%);
+            color: var(--white);
+            margin: 0;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            min-height: 100vh;
+        }
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.5rem 0 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(20,33,61,0.18);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .nav a:hover {
+            color: var(--orange);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .site-title {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .site-subtitle {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: var(--orange);
+            font-weight: 500;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .gallery {
+            background: #1a2233;
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            padding: 2rem 2rem 1.5rem 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .gallery-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .gallery-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .gallery-images img:first-child,
+        .gallery-images img:last-child {
+                max-width: 225px;
+                max-height: 300px;
+                margin-top: 50px;
+        }
+
+        .gallery-images img {
+            border-radius: 1rem;
+            box-shadow: 0 2px 12px rgba(20,33,61,0.18);
+            max-width: 300px;
+            max-height: 500px; 
+            width: 100%;
+            object-fit: cover;
+            background: #232b3a;
+        }
+        .section-title {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: underline;
+            margin: 2.5rem 0 1rem 0;
+            text-align: left;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .card-row {
+            display: flex;
+            justify-content: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #1a2233;
+            border-radius: 1rem;
+            min-width: 220px;
+            max-width: 300px;
+            flex: 1 1 220px;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 5px solid var(--orange);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 48px rgba(20,33,61,0.28);
+            border-top: 5px solid var(--white);
+        }
+        .card h2 {
+            margin: 0 0 1rem 0;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .card p {
+            color: var(--dark-gray);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .card a {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--orange), #ff9800);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(20,33,61,0.18);
+            margin-top: auto;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        .card a:hover {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: 0 4px 16px rgba(20,33,61,0.28);
+        }
+        section[id] {
+            scroll-margin-top: 275px; /* adjust to match header height */
+        }
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem 0 1rem 0;
+            margin-top: 3rem;
+            font-size: 1rem;
+            border-radius: 1rem 1rem 0 0;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        @media (max-width: 900px) {
+            .card-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .gallery-images {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .gallery {
+                padding: 1rem 0.5rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .gallery-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/images/tomahawk_pins.png" alt="FTC Tomahawk Logo" class="logo">
+        <div class="nav">
+            <a href="#general">General</a>
+            <a href="#scouting">Scouting</a>
+            <a href="#parts">Parts</a>
+            <a href="#registration">Registration</a>
+        </div>
+        <h1 class="site-title">FTC Vault</h1>
+        <p class="site-subtitle">Presented by Tomahawk 17315</p>
+    </header>
+    <main>
+        <section class="gallery">
+            <div class="gallery-title">Power Up Your Season</div>
+            <div class="gallery-images">
+                <img src="/Images/Screenshot 2025-07-31 232857.png" alt="Screenshot">
+                <img src="/Images/IMG_1615.jpg" alt="Team Photo 1">
+                <img src="/Images/IMG_1793.jpg" alt="Team Photo 2">
+                <img src="/Images/IMG_1616.jpg" alt="Team Photo 3">
+            </div>
+        </section>
+
+        <section id="general">
+            <div class="section-title">General Resources</div>
+            <div class="card-row">
+                <div class="card">
+                    <h2>FTC Resources</h2>
+                    <p>Find essential resources for your FTC journey.</p>
+                    <a href="https://www.firstinspires.org/robotics/ftc" target="_blank">FTC Resources</a>
+                </div>
+                <div class="card">
+                    <h2>Game Manual 0</h2>
+                    <p>Learn the basics, rules, and how to get started.</p>
+                    <a href="https://gm0.org/en/latest/" target="_blank">Game Manual 0</a>
+                </div>
+                <div class="card">
+                    <h2>FTC Documentation</h2>
+                    <p>Official docs and technical information.</p>
+                    <a href="https://ftc-docs.firstinspires.org/en/latest/index.html" target="_blank">FTC Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="scouting">
+            <div class="section-title">Scouting Resources</div>
+            <div class="card-row">
+                <div class="card">
+                    <h2>Intro to Scouting</h2>
+                    <p>Learn how to scout teams and matches.</p>
+                    <a href="https://www.firstinspires.org/sites/default/files/uploads/resource_library/frc/team-resources/frc_intro_scouting.pdf" target="_blank">Scouting PDF</a>
+                </div>
+                <div class="card">
+                    <h2>FTC Scout</h2>
+                    <p>Access scouting tools and guides.</p>
+                    <a href="https://ftcscout.org/" target="_blank">FTC Scout</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="parts">
+            <div class="section-title">Part Order Resources</div>
+            <div class="card-row">
+                <div class="card">
+                    <h2>AndyMark</h2>
+                    <p>Order FTC parts and kits.</p>
+                    <a href="https://andymark.com/collections/first-tech-challenge" target="_blank">AndyMark</a>
+                </div>
+                <div class="card">
+                    <h2>goBILDA</h2>
+                    <p>Find mechanical and electronic parts.</p>
+                    <a href="https://www.gobilda.com/" target="_blank">goBILDA</a>
+                </div>
+                <div class="card">
+                    <h2>REV Robotics</h2>
+                    <p>Shop for FTC electronics and hardware.</p>
+                    <a href="https://www.revrobotics.com/" target="_blank">REV Robotics</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="registration">
+            <div class="section-title">Registration Resources</div>
+            <div class="card-row">
+                <div class="card">
+                    <h2>FTC Registration</h2>
+                    <p>Register your team for the season.</p>
+                    <a href="https://my.firstinspires.org/AccountManager/Account/Register" target="_blank">Register</a>
+                </div>
+                <div class="card">
+                    <h2>Cost & Info</h2>
+                    <p>Learn about registration costs and details.</p>
+                    <a href="https://www.firstinspires.org/robotics/ftc/cost-and-registration" target="_blank">FTC Info</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 FTC Vault &mdash; Tomahawk 17315. All rights reserved.
+        <br>
+        <a href="https://tomahawk17315.github.io/Toma_Website/" target="_blank">Visit our website</a>
+    </footer>
+</body>
+</html>
